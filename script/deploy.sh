@@ -1,31 +1,34 @@
-#!/usr/bin/env bash
+#!/bin/bash
+echo "Starting deployment"
+echo "Target: gh-pages branch"
 
-echo "===  DEPLOYING  ===="
-#set -o errexit -o nounset
-#echo $TRAVIS_BRANCH
-#
-#if [ "$TRAVIS_BRANCH" != "master" ]
-#then
-#  echo "This commit was made against the $TRAVIS_BRANCH and not the master! No deploy!"
-#  exit 0
-#fi
-#
-#rev=$(git rev-parse --short HEAD)
-#
-#cd _site
-#
-#git init
-#git config user.name "Nick Houghton"
-#git config user.email "nhoughto5@gmail.com"
-#
-#git remote add upstream "https://$GH_TOKEN@github.com/nhoughto5/PhillsBlog.git"
-#git fetch upstream
-#git reset upstream/gh-pages
-#
-#echo "https://nhoughto5.github.io/PhillsBlog/" > CNAME
-#
-#touch .
-#
-#git add -A .
-#git commit -m "rebuild pages at ${rev}"
-#git push -q upstream HEAD:gh-pages
+DIST_DIRECTORY="dist/"
+CURRENT_COMMIT=`git rev-parse HEAD`
+ORIGIN_URL=`git config --get remote.origin.url`
+ORIGIN_URL_WITH_CREDENTIALS=${ORIGIN_URL/\/\/github.com/\/\/$GITHUB_TOKEN@github.com}
+
+cp .gitignore $DIST_DIRECTORY || exit 1
+
+echo "Checking out gh-pages branch"
+git checkout -B gh-pages || exit 1
+
+echo "Removing old static content"
+git rm -rf . || exit 1
+
+echo "Copying dist content to root"
+cp -r $DIST_DIRECTORY/* . || exit 1
+cp $DIST_DIRECTORY/.gitignore . || exit 1
+
+echo "Pushing new content to $ORIGIN_URL"
+git config user.name "Nick Houghton" || exit 1
+git config user.email "nhoughto5@gmail.com" || exit 1
+
+git add -A . || exit 1
+git commit --allow-empty -m "Regenerated static content for $CURRENT_COMMIT" || exit 1
+git push --force --quiet "$ORIGIN_URL_WITH_CREDENTIALS" gh-pages > /dev/null 2>&1
+
+echo "Cleaning up temp files"
+rm -Rf $DIST_DIRECTORY
+
+echo "Deployed successfully."
+exit 0
