@@ -11,7 +11,7 @@ script:
     - bash ./script/cibuild.sh
 
 after_success:
-    - bash deploy.sh
+    - bash ./script/deploy.sh
 
 
 after_success:
