@@ -12,16 +12,8 @@ cp .gitignore $DIST_DIRECTORY || exit 1
 echo "Checking out gh-pages branch"
 git checkout -B gh-pages || exit 1
 
-echo "Removing old static content"
-git rm -rf || exit 1
-#{
-#    git rm -rf . &&
-#    mv output
-#} || {
-#    mv log
-#    echo log
-#}
-
+#echo "Removing old static content"
+#git rm -rf || exit 1
 
 echo "Copying dist content to root"
 cp -r $DIST_DIRECTORY/* . || exit 1
