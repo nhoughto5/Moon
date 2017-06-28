@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
+
+echo "===  DEPLOYING  ===="
 set -o errexit -o nounset
-echo "DEPLOYING"
-
 echo $TRAVIS_BRANCH
 
 if [ "$TRAVIS_BRANCH" != "master" ]
