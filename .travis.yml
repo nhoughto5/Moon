@@ -10,10 +10,11 @@ before_script:
 # the `install` step will run `bundle install` by default.
 script:
     - bash ./script/cibuild.sh
+    - bash ./script/deploy.sh
 
 after_success:
 #    - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && bash deploy.sh
-    - bash ./script/deploy.sh
+
 
 #deploy:
 #    provider: pages
