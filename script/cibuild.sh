@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
 echo "Running CIBuild.sh script"
-#bundle exec jekyll contentful
-#ruby script/postToData.rb
+echo "=== Execute Jekyll Contentful"
+bundle exec jekyll contentful || echo "Failed to exec jekyll contentful"
+echo "Execute postToData"
+ruby script/postToData.rb || echo "Failed to run postToData"
+echo "Finishd postToData"
