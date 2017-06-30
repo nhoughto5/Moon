@@ -10,7 +10,7 @@ tiled_bg:           false   # Set this true if you want to tile your background 
 locale:             en_US
 baseurl:            /PhillippaBlog
 url:
-
+future: true
 
 # Jekyll
 permalink:          /:title/
