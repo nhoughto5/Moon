@@ -1,0 +1,8 @@
+---
+post:
+- sys:
+    id: 0
+  title: Chicago
+  id: 0
+  date: !ruby/object:DateTime 2017-06-29 00:00:00.000000000 -07:00
+  content: Running mate
