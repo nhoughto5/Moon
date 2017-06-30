@@ -26,7 +26,7 @@ begin
     #create filename for post MD file in the format 'yyyy-mm-dd-some-title.md'
     post_date = "#{postData['post'][post_counter]['date']}".partition('T').first
     title_slug = "#{postData['post'][post_counter]['title']}".downcase.gsub(" ", "-")
-    filename = post_date + "-" + title_slug + ".md"
+    filename = post_date + "-" + title_slug + ".markdown"
     puts filename
 
     #create post file and append YAML front matter data
