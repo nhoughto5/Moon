@@ -1,8 +1,17 @@
 ---
 post:
 - sys:
+    id: 1
+  title: My second post with an image
+  id: 1
+  date: !ruby/object:DateTime 2017-07-02 00:00:00.000000000 -07:00
+  content: |-
+    Hello, here is an image post.
+
+    ![phillippa](//images.contentful.com/7vu43bw8u0rz/2gKjf4VxqcGOQKWqSiCmOm/b6e2d2bf032636e2c3a3cff6cc80389b/phillippa.png)
+- sys:
     id: 0
-  title: Chicago
+  title: This is my first post
   id: 0
-  date: !ruby/object:DateTime 2017-06-29 00:00:00.000000000 -07:00
-  content: Running mate
+  date: !ruby/object:DateTime 2017-07-02 00:00:00.000000000 -07:00
+  content: This is my first post, this is me talking about doctoring.
